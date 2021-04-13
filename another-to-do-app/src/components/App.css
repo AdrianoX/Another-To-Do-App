@@ -2,3 +2,8 @@
   text-align: center;
   padding: 15px;
 }
+
+.active {
+  margin: 15px;
+  margin-right: 15px;
+}
