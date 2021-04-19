@@ -9,19 +9,56 @@ class AddTask extends Component {
     date: this.minDate,
   };
 
+  handleText = (e) => {
+    this.setState({
+      text: e.target.value,
+    });
+  };
+
+  handleCheckbox = (e) => {
+    this.setState({
+      checked: e.target.checked,
+    });
+  };
+
   handleDate = (e) => {
     this.setState({
       date: e.target.value,
     });
   };
 
+  handleClick = () => {
+    const { text, checked, date } = this.state;
+    if (text.length > 2) {
+      const add = this.props.add(text, date, checked);
+      if (add) {
+        this.setState({
+          text: "",
+          checked: false,
+          date: this.minDate,
+        });
+      }
+    } else {
+      alert("Name to short !");
+    }
+  };
   render() {
     let maxDate = this.minDate.slice(0, 4) * 1 + 1;
     maxDate = maxDate + "-12-31";
     return (
       <div className="form">
-        <input type="text" placeholder="Add Task" value={this.state.text} />
-        <input type="checkbox" checked={this.state.checked} id="important" />
+        <input
+          type="text"
+          placeholder="Add Task"
+          value={this.state.text}
+          onChange={this.handleText}
+        />
+        <input
+          type="checkbox"
+          checked={this.state.checked}
+          id="important"
+          onChange={this.handleCheckbox}
+        />
         <label htmlFor="important">Priority</label>
         <br />
         <label htmlFor="date">Until when</label>
@@ -34,7 +71,7 @@ class AddTask extends Component {
           onChange={this.handleDate}
         />
         <br />
-        <button>Add</button>
+        <button onClick={this.handleClick}>Add</button>
       </div>
     );
   }
