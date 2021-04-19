@@ -4,7 +4,32 @@ import Task from "./Task";
 const TaskList = (props) => {
   const active = props.tasks.filter((task) => task.active === true);
   const done = props.tasks.filter((task) => task.active === false);
-  console.log(active, done);
+  //   console.log(active, done);
+
+  //   done.sort((a, b) => b.finishDate - a.finishDate);
+
+  if (done.length >= 2) {
+    done.sort((a, b) => {
+      if (a.finishDate > b.finishDate) {
+        return -1;
+      }
+      if (a.finishDate < b.finishDate) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
+  if (active.length >= 2) {
+    active.sort((a, b) => {
+      a = a.text.toLowerCase();
+      b = b.text.toLowerCase();
+
+      if (a < b) return -1;
+      if (a > b) return 1;
+      return 0;
+    });
+  }
 
   const activeTasks = active.map((task) => (
     <Task
