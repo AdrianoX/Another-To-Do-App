@@ -85,9 +85,9 @@ class App extends Component {
   addTask = (text, date, important) => {
     const task = {
       id: this.counter,
-      text, // input TXT
-      date, // input TXT
-      important, // value input
+      text,
+      date,
+      important,
       active: true,
       finishDate: null,
     };

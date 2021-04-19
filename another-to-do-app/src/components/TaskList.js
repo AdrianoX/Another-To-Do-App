@@ -4,7 +4,6 @@ import Task from "./Task";
 const TaskList = (props) => {
   const active = props.tasks.filter((task) => task.active === true);
   const done = props.tasks.filter((task) => task.active === false);
-  //   console.log(active, done);
 
   //   done.sort((a, b) => b.finishDate - a.finishDate);
 
